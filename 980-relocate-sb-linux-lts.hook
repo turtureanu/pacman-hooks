@@ -1,0 +1,19 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+
+#Target = linux
+Target = linux-lts
+#Target = linux-hardened
+#Target = linux-zen
+#Target = linux-xanmod
+#Target = linux-xanmod-calcule
+#Target = linux-xanmod-git
+#Target = linux-xanmod-rt
+#Target = linux-xanmod-anbox
+
+[Action]
+Description = Relocating (copying) vmlinuz and initramfs to match UEFI entry
+When = PostTransaction
+Exec = /bin/sh -c 'cp /boot/vmlinuz-linux-lts /boot/EFI/Artix/vmlinuz.efi && cp /boot/initramfs-linux-lts.img /boot/EFI/Artix/initramfs.img'

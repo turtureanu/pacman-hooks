@@ -1,0 +1,19 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+
+Target = linux
+Target = linux-lts
+Target = linux-hardened
+Target = linux-zen
+Target = linux-xanmod
+Target = linux-xanmod-calcule
+Target = linux-xanmod-git
+Target = linux-xanmod-rt
+Target = linux-xanmod-anbox
+
+[Action]
+Description = Signing the kernel for UEFI Secure Boot direct booting (EFISTUB)
+When = PostTransaction
+Exec = /bin/sh -c 'for i in `ls /boot/vmlinuz*`; do sbsign --key /boot/efi-keys/DB.key --cert /boot/efi-keys/DB.crt --output $i $i; done'
